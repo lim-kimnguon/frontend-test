@@ -1,0 +1,81 @@
+<div class="card-container">
+  <mat-card class="example-card">
+    <div cdkDropListGroup class="sub-container">
+
+      <mat-card-header class="header">
+        <mat-card-title>Question</mat-card-title>
+        <span class="spacer"></span>
+        <span class="time"> {{toHHMMSS(seconds)}} <mat-icon>access_alarms</mat-icon> </span>
+      </mat-card-header>
+
+      <mat-card-content class="content">
+        <div class="body">
+
+          <div class="question-container">
+            <div class="question">
+              <ng-container *ngFor="let part of questionDetails.questions; trackBy: trackByMethod; let i = index">
+                {{part}}
+                <span cdkDropList [cdkDropListData]="questionDetails.answers[i]" class="example-list"
+                  id="QUESTION_{{i}}" (cdkDropListDropped)="drop($event)">
+                  <span class="example-box" cdkDrag>{{ questionDetails.answers[i][0] }}</span>
+                </span>
+              </ng-container>
+            </div>
+          </div>
+
+          <!-- <div [hidden]="old_question" class="answers">
+          <span class="new">New</span> -->
+          <div class="example-container">
+            <h3>Options</h3>
+
+            <div class="answer" cdkDropList [cdkDropListData]="questionDetails.options" class="example-list" id="OPTION"
+              (cdkDropListDropped)="drop($event)">
+              <div class="example-box" *ngFor="let option of questionDetails.options" cdkDrag>
+                {{option}}
+              </div>
+            </div>
+          </div>
+          <!--</div > -->
+
+          <!-- <div [hidden]="!old_question" class="answers">
+          <span class="old">Old</span>
+          <div class="example-container">
+            <h3>Options</h3>
+
+            <div class="answer"
+              cdkDropList
+              [cdkDropListData]="questionDetails.options"
+              class="example-list"
+              id="OPTION"
+              (cdkDropListDropped)="drop($event)"
+            >
+              <div
+                class="example-box"
+                *ngFor="let option of questionDetails.options"
+                cdkDrag
+              >
+                {{option}}
+              </div>
+            </div>
+          </div>
+        </div> -->
+        </div>
+
+      </mat-card-content>
+
+      <mat-toolbar color="accent" class="footer">
+        <button [disabled]="current_question === 0" mat-raised-button class="previous" (click)="previousQuestion()">
+          <mat-icon>keyboard_arrow_left</mat-icon> Previous
+        </button>
+        <span class="spacer"></span>
+        <span class="text">Question {{current_question +1 }} of {{questions.length}} </span>
+        <span class="spacer"></span>
+        <button mat-raised-button class="next"
+          (click)="(current_question < questions.length - 1) ? nextQuestion() : submitQuestion()"> {{ (current_question
+          < questions.length - 1) ? "Next" : "Submit" }} <mat-icon>keyboard_arrow_right</mat-icon>
+        </button>
+        <!-- <button mat-raised-button class="submit" routerLink="/finish-page" (click)="submitQuestion()"> Submit <mat-icon>done_outline</mat-icon></button> -->
+      </mat-toolbar>
+    </div>
+  </mat-card>
+</div>

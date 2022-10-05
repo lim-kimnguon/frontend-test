@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="container-card">
+    <img src="../../../assets/img/allweb.png" alt="company logo" class="logo">
+    <mat-card-title class="title" >Login</mat-card-title>
+    <mat-card-content class="card-contain">
+      <div [formGroup]="form">
+
+        <mat-form-field appearance="outline"  >
+          <mat-label>Email</mat-label>
+          <input
+            type="email"
+            matInput
+            formControlName="email"
+            placeholder="Ex: example@gmail.com"
+            required
+            (keyup.enter)="loginclick()"
+          />
+           <mat-error *ngIf="email.errors?.['required']">Email is required.</mat-error>
+           <mat-error *ngIf="email.errors?.['email']">Email in invalid</mat-error>
+
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" >
+          <mat-label>Password</mat-label>
+          <input matInput [type]="hide ? 'password' : 'text'"  formControlName="password" (keyup.enter)="loginclick()" required>
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="hide = !hide"
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide"
+          >
+            <mat-icon dense>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+          </button>
+
+          <mat-error *ngIf="password.errors?.['required']">Password is required.</mat-error>
+          <mat-error *ngIf="password.errors?.['minlength']">Password must be at least 4 characters long.</mat-error>
+
+        </mat-form-field>
+
+        <mat-error *ngIf="loginerror" class="erorr-message">Bad credential. Please log in again</mat-error>
+        <div class="button">
+          <button class="btn" type="submit" mat-raised-button color="primary" (click)="loginclick()">Login</button>
+        </div>
+      </div>
+    </mat-card-content>
+    <div>
+      Forget Password? <a routerLink="/forget-password">Click here</a>
+    </div>
+  </div>
+</div>

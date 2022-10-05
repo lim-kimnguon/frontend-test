@@ -1,0 +1,150 @@
+<div class="card-container">
+  <mat-card class="example-card">
+    <mat-card-header class="header">
+      <mat-card-title>{{quizTitle}}</mat-card-title>
+      <span class="spacer"></span>
+      <span class="time"> {{toHHMMSS(seconds)}} <mat-icon>access_alarms</mat-icon> </span>
+    </mat-card-header>
+
+    <mat-card-content class="content">
+      <div class="body">
+
+        <div class="answers">
+
+          <div *ngIf="questionType == 'QCM'" class="qcm-container">
+            <div class="title" *ngIf="questionType != 'Fill in Blank'">
+              {{current_question + 1}}. {{category[current_question]?.name}}
+            </div>
+            <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group"
+              [(ngModel)]="answer">
+              <mat-radio-button class="example-radio-button" [disabled]="isDone" required
+                *ngFor="let answer of category[current_question]?.answer; let i = index;" [value]="answer.id"
+                (click)="getAnswer(category[current_question].answer, i)">
+                {{ answer.name }}
+              </mat-radio-button>
+            </mat-radio-group>
+          </div>
+
+          <!-- <div *ngIf="questionType == 'Fill in Blank'" class="answer-container">
+            <div class="question-container">
+              <div class="question">
+                <ng-container *ngFor="let part of questionDetails.questions; trackBy: trackByMethod; let i = index">
+                  {{part}}
+                  <span cdkDropList [cdkDropListData]="questionDetails.answers[i]" class="example-list"
+                    id="QUESTION_{{i}}" (cdkDropListDropped)="drop($event)">
+                    <span class="example-box" cdkDrag>{{ questionDetails.answers[i][0] }}</span>
+                  </span>
+                </ng-container>
+              </div>
+            </div>
+
+            <div class="example-container">
+              <h3>Options</h3>
+
+              <div class="answer" cdkDropList [cdkDropListData]="questionDetails.options" class="example-list"
+                id="OPTION" (cdkDropListDropped)="drop($event)">
+                <div class="example-box" *ngFor="let option of questionDetails.options" cdkDrag>
+                  {{option}}
+                </div>
+              </div>
+            </div>
+          </div> -->
+
+          <div *ngIf="questionType == 'Multiple Selection'" class="selection-container">
+            <div class="title" *ngIf="questionType != 'Fill in Blank'">
+              {{current_question + 1}}. {{category[current_question]?.name}}
+            </div>
+            <section class="selection-answers" *ngFor="let answer of category[current_question]?.answer; let i = index;">
+              <p>
+                <mat-checkbox (change)="showOptions($event);" [disabled]="isDone" [checked]="getMultipleAnswer(answer.id)"  required [value]="answer.id"
+                  (change)="getAnswer(category[current_question].answer, i);">
+                  {{answer.name}}
+                </mat-checkbox>
+              </p>
+            </section>
+          </div>
+
+          <div *ngIf="questionType == 'Matching Question'" class="matching-container">
+            <div class="title" *ngIf="questionType != 'Fill in Blank'">
+              {{current_question + 1}}. {{category[current_question]?.name}}
+            </div>
+            <div class="container">
+              <div class="matching">
+                <div cdkDropListGroup class="drop-container">
+                  <div class="left-box">
+                    <div cdkDropList class="drop-box" [cdkDropListData]="ans1_box" #answer1="cdkDropList"
+                      [cdkDropListConnectedTo]="[answercon]" (cdkDropListDropped)="dropquestion($event)"
+                      [cdkDropListEnterPredicate]="evenPredicate">
+                      <div class="drag-box-question" *ngFor="let item of ans1_box" [cdkDragDisabled]="isDone" cdkDrag>{{ !isDone ? item.pair : ans1_box }}</div>
+                    </div>
+                    <div>1. {{ answer_array[matchingQuestionIndex].name }}</div>
+                  </div>
+
+                  <div class="left-box">
+                    <div cdkDropList class="drop-box" [cdkDropListData]="ans2_box" #answer2="cdkDropList"
+                      [cdkDropListConnectedTo]="[answercon]" (cdkDropListDropped)="dropquestion($event)"
+                      [cdkDropListEnterPredicate]="evenPredicate">
+                      <div class="drag-box-question" *ngFor="let item of ans2_box" [cdkDragDisabled]="isDone" cdkDrag>{{ !isDone ? item.pair : ans2_box }}</div>
+                    </div>
+                    <div>2. {{ answer_array[matchingQuestionIndex + 1].name }}</div>
+                  </div>
+                  <div class="left-box">
+                    <div cdkDropList class="drop-box" [cdkDropListData]="ans3_box" #answer3="cdkDropList"
+                      [cdkDropListConnectedTo]="[answercon]" (cdkDropListDropped)="dropquestion($event)"
+                      [cdkDropListEnterPredicate]="evenPredicate">
+                      <div class="drag-box-question" *ngFor="let item of ans3_box" [cdkDragDisabled]="isDone" cdkDrag>{{ !isDone ? item.pair : ans3_box }}</div>
+                    </div>
+                    <div>3. {{ answer_array[matchingQuestionIndex + 2].name }}</div>
+                  </div>
+                  <div class="left-box">
+                    <div cdkDropList class="drop-box" [cdkDropListData]="ans4_box" #answer4="cdkDropList"
+                      [cdkDropListConnectedTo]="[answercon]" (cdkDropListDropped)="dropquestion($event)"
+                      [cdkDropListEnterPredicate]="evenPredicate">
+                      <div class="drag-box-question"  *ngFor="let item of ans4_box" [cdkDragDisabled]="isDone" cdkDrag>{{ !isDone ? item.pair : ans4_box }}</div>
+                    </div>
+                    <div>4. {{ answer_array[matchingQuestionIndex + 3].name }}</div>
+                  </div>
+                </div>
+
+                <div class="drag-main answer-part">
+                  <div cdkDropList [cdkDropListData]="category[current_question]?.answer" #answercon="cdkDropList"
+                    [cdkDropListConnectedTo]="[answer1, answer2, answer3, answer4]" class="drag-container"
+                    (cdkDropListDropped)="drop($event)">
+                    <div class="drag-box" cdkDragBoundary=".container"
+                      *ngFor="let answer of category[current_question]?.answer" [cdkDragDisabled]="isDone" cdkDrag>{{ answer.pair }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="questionType == 'Question'" class="open-question-container">
+            <div class="title" *ngIf="questionType != 'Fill in Blank'">
+              {{current_question + 1}}. {{category[current_question]?.name}}
+            </div>
+            <mat-form-field appearance="outline">
+              <mat-label>Your code goes here</mat-label>
+              <textarea class="textarea" matInput placeholder="Your code goes here" [(ngModel)]="text"
+                [disabled]="isDone"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+
+    <mat-toolbar color="accent" class="footer">
+      <button [disabled]="current_question === 0" mat-raised-button class="previous" (click)="previousQuestion()">
+        <mat-icon>skip_previous</mat-icon> Previous
+      </button>
+      <span class="spacer"></span>
+      <span class="text">Question {{current_question +1 }} of {{category.length}} </span>
+      <span class="spacer"></span>
+      <button mat-raised-button class="next" [disabled]="disableSubmit"
+        (click)="(current_question < category.length - 1) ? nextQuestion() : submitQuestion()">
+        {{ (current_question < category.length - 1) ? "Next" : "Submit" }}
+          <mat-icon>skip_next</mat-icon>
+      </button>
+    </mat-toolbar>
+  </mat-card>
+</div>

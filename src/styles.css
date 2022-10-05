@@ -1,0 +1,40 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body {
+  margin: 0;
+  scrollbar-width: thin;          /* "auto" or "thin" */
+  scrollbar-color: blue orange;   /* scroll thumb and track */
+  font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+* {
+  margin: 0px;
+  padding: 0px;
+  text-decoration: none;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: medium;
+}
+
+.disable-text-selection {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* *::-webkit-scrollbar-track {
+  background: grey;
+} */
+
+*::-webkit-scrollbar-thumb {
+  background: rgb(0,241,255);
+  background: linear-gradient(90deg, rgba(0,241,255,1) 0%, rgba(6,133,173,1) 100%);
+  border-radius: 20px;
+}

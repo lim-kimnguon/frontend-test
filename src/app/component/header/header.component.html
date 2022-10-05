@@ -1,0 +1,39 @@
+<div class="container">
+  <mat-toolbar>
+    <a href="https://www.allweb.com.kh/" target="_blank"><img class="img" src="../../../assets/img/allweb.png" alt=""></a>
+    <span class="example-spacer"></span>
+    <div class="menu" >
+      <a class="btn" routerLink="/home" mat-button>Home</a>
+      <a class="btn" routerLink="/quiz-rule" mat-button>Start Quiz</a>
+      <a class="btn" href="https://www.allweb.com.kh/" target="_blank" mat-button>About Us</a>
+      <a class="btn" href="https://www.allweb.com.kh/" target="_blank" mat-button>Contact Us</a>
+    </div>
+    <span class="example-spacer"></span>
+    <div class="row mr-2 ml-auto">
+      <button mat-button [matMenuTriggerFor]="menu" class="user mt-2 d-flex align-items-center">
+        <mat-icon>account_circle</mat-icon>
+          {{user.first_name}}
+        <mat-icon class="user-image-icon ml-1">
+          keyboard_arrow_down
+        </mat-icon>
+      </button>
+
+      <mat-menu #menu="matMenu">
+        <div class="user-info">
+          <mat-card class="user-profile">
+            <mat-card-header>
+              <mat-card-title class="username">{{user.first_name | uppercase}} {{user.last_name | uppercase}}</mat-card-title>
+              <mat-card-subtitle class="email">{{user.email}}</mat-card-subtitle>
+            </mat-card-header>
+          </mat-card>
+        </div>
+
+        <button mat-menu-item (click)="logout()">
+          <mat-icon>exit_to_app</mat-icon>
+          Logout
+        </button>
+      </mat-menu>
+    </div>
+  </mat-toolbar>
+</div>
+

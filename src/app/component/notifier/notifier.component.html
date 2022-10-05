@@ -1,0 +1,14 @@
+<div class="content">
+  <div class="title">
+    <span *ngIf="data.type=='success'"><mat-icon>offline_pin</mat-icon></span>
+    <span *ngIf="data.type!='success'"><mat-icon>warning</mat-icon></span>
+  </div>
+
+  <div class="content-style message">
+    {{data.message}}
+  </div>
+
+  <div style="text-align: center;" class="button">
+    <mat-icon style="color: white;" (click)="snackBarRef.dismiss()">backspace</mat-icon>
+  </div>
+</div>

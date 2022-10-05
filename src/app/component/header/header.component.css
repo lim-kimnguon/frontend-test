@@ -1,0 +1,42 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.container {
+  height: auto;
+}
+
+.mat-toolbar {
+  background: rgb(0,241,255);
+  background: linear-gradient(90deg, rgba(0,241,255,1) 0%, rgba(6,133,173,1) 100%);
+
+  color: black;
+  height: 11vh;
+}
+
+.btn:hover {
+  background-color: aquamarine;
+}
+
+.active {
+  background-color: aquamarine;
+}
+
+.menu {
+  display: flex;
+  gap: 15px;
+}
+
+img {
+  width: 5vw;
+  margin-right: 15px;
+}
+
+a {
+  text-decoration: none;
+}
+
+.search {
+  border: 1px solid black;
+  opacity: 0.6;
+}

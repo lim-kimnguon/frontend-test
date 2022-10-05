@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="title_page">
+    ALLWEB QUIZ
+  </div>
+  <div class="quiz">
+    <mat-card class="card_cont" *ngFor="let quiz of quizzes; let i=index;">
+      <div class="image">
+        <img
+          src="https://thumbs.dreamstime.com/b/male-hand-holding-megaphone-quiz-time-speech-bubble-loudspeaker-banner-business-marketing-advertising-vector-125104939.jpg"
+          alt="">
+      </div>
+
+      <div class="sub_cont">
+        <div class="title">
+          {{quiz.name}}
+        </div>
+        <div class="description">
+          Do you know the difference between software and a web browser? Can you tell the differences between tech-speak
+          and programming languages? So you are a computer whiz and know all there is to know about web
+        </div>
+        <div class="time">
+          Duration: <span>60</span>minutes
+        </div>
+        <div class="button-container">
+          <button mat-raised-button color="primary" routerLink="/quiz">Start Quiz</button>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+
+</div>

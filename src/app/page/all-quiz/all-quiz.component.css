@@ -1,0 +1,55 @@
+.container{
+  width: 100%;
+  height: auto;
+  padding: 5px;
+}
+.container .title_page{
+  text-align: center;
+  font-size: 2em;
+  font-weight: bold;
+  color: blue;
+  margin-bottom: 2vw;
+}
+.card_cont{
+  width: 90%;
+  height: auto;
+  margin: 1vw 3vw 0px 3vw;
+  display: flex;
+  border-radius: 1vw;
+}
+.card_cont:hover{
+  box-shadow: 1px 2px 20px rgba(0, 0, 0,0.5);
+
+}
+
+.card_cont .image{
+  width: auto;
+  margin-right: 3vw;
+}
+.image img{
+  height: 18vh;
+}
+.card_cont .sub_cont{
+  width: auto;
+}
+.sub_cont .title{
+  font-weight:800;
+  font-size: 1.3em;
+}
+.sub_cont .description{
+  font-weight:400;
+  font-size: 1em;
+  margin: 0.7vw 0px ;
+}
+.sub_cont .time{
+  font-weight:600;
+  font-size: 0.9em;
+  margin: 0.7vw 0px ;
+}
+.sub_cont .button-container{
+  text-align: right;
+}
+.button-container button{
+  margin: 0px 0.5vw;
+  font-size: 1em;
+}

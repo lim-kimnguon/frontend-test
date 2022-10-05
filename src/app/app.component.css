@@ -1,0 +1,22 @@
+.page{
+  /* height: 100vh; */
+  padding: 4vh 0px;
+  background-color: rgb(239, 239, 248);
+}
+
+.container {
+  position: relative;
+  z-index: 2;
+}
+
+.header {
+  top: 0;
+  z-index: 1;
+  position: sticky;
+}
+
+
+
+
+
+

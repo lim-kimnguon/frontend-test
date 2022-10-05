@@ -1,0 +1,21 @@
+<div class="rule">
+  <mat-card class="container">
+    <div class="container-card">
+      <div class="title">Quiz Rules</div>
+
+        <mat-card-content class="answer">
+          <section class="example-radio-group" aria-labelledby="example-radio-group-label ">
+            <mat-list role="list">
+              <mat-list-item class='item' *ngFor="let role of roles; let i=index;" role="listitem"><b>{{i+1}}. </b>{{role.role}} </mat-list-item>
+            </mat-list>
+          </section>
+        </mat-card-content>
+    </div>
+
+    <mat-toolbar class="buttom_toolbar">
+      <div class="btn">
+        <button routerLink="/quiz" mat-raised-button color="primary" class="btn-start">Start Quiz    <mat-icon>play_circle_outline</mat-icon></button>
+      </div>
+    </mat-toolbar>
+  </mat-card>
+</div>

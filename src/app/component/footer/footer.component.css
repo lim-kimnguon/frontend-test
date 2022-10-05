@@ -1,0 +1,41 @@
+.footer{
+  /* width: 94.6vw; */
+  height: auto;
+  display: flex;
+  padding:  2vw 2vw;
+  background-image: linear-gradient(315deg, #a8afbc 0%, #d0e7e7 100%);
+  height: auto;
+  border: 2px solid rgba(0, 0, 0,0.3);
+}
+
+.part1{
+  width: 23vw;
+  margin: 0px 4vw 0px 4vw;
+}
+.sub img{
+  width: 35%;
+  padding-left: 2vw;
+}
+.sub .description{
+  width: 90%;
+  padding: 1vw;
+}
+.sub .title{
+  font-size: 1.2em;
+  font-weight: bold;
+}
+.list a{
+  text-decoration: none;
+  margin-top: 2vh;
+}
+.part2{
+  margin-left: 3vw;
+  width: 15vw;
+}
+
+.btn-cont button{
+  margin: 0.5vw;
+  background-color: white;
+  color: #5789d4;
+}
+
